@@ -20,5 +20,11 @@ router.get('/:id', (req, res) => {
     res.render('historics/show', { historic: histData[index] });
 });
 // Post - prehistoric_creatures
+router.post('/', (req, res) => {
+    histData.push(req.body);
+    let histJson = JSON.stringify(histData);
+    fs.writeFileSync('./prehistoric_creatures.json', histJson);
+    res.redirect('/prehistoric_creatures');
+});
 
 module.exports = router;
